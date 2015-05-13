@@ -31,16 +31,18 @@ def processURL(myUrl):
     try:
       # Parse url
       feeds = feedparser.parse(myUrl)
+      print len(feeds['entries'])
       print ("URL of the feed: "+feeds['feed']['link'])
       for post in feeds.entries:
         print("Feed Title: "+post.title+"\n")
         print("Feed URL: "+post.link+"\n")
         try:
+          
           if post.description:
             description = re.findall(r'<p>(.*?)</p>',post.description)
             for desc in description:
               desc = cleanhtml(desc)
-              strBuild += desc
+              strBuild += desc        
           else:
             # If there is no entry description 
             postSummary = re.findall(r'<p>(.*?)</p>',post.summary)
@@ -49,24 +51,28 @@ def processURL(myUrl):
               strBuild += summary
         except Exception, e:
           print (str(e))  
-        
+         
       print("Please wait for the processing to be completed. It may take several minutes...")  
       text = TextBlob(strBuild)
+      count = 0
       for sentence in text.sentences:
-        blob = TextBlob(str(sentence), analyzer=NaiveBayesAnalyzer())
-        #print(str(sentence))
-        if blob.sentiment.classification == 'neg':
-          negCount += 1
-          negList.append(str(sentence))
-        else:
-          posCount += 1
-          posList.append(str(sentence))
+        if count < 5:    #Process only seven sentences to shorten the processing time
+          blob = TextBlob(str(sentence), analyzer=NaiveBayesAnalyzer())
+          #print(str(sentence))
+          if blob.sentiment.classification == 'neg':
+            negCount += 1
+            negList.append(str(sentence))
+          else:
+            posCount += 1
+            posList.append(str(sentence))
+          count += 1   
+          print(count) 
       
       print ("Negative Indicators: ")    
       print (negList)
       print ("Positive Indicators: ")
       print (posList)
-      if negCount == posCount:
+      if negCount == posCount:                                                                    
         print ("Overall Sentiment: Neutral")
       else:
         if negCount > posCount:
@@ -88,6 +94,7 @@ else:
     response = requests.get(url)
     if "text/html" in response.headers["content-type"]:
       #Examine the HTML source at the URL for syndication feeds (ATOM or RSS) : using feedfinder
+      print('Obtaining the URL for the syndication feeds...')
       newFeedUrl = feedfinder.feed(url)
       if newFeedUrl:
         processURL(newFeedUrl)
