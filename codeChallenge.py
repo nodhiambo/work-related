@@ -40,6 +40,7 @@ def processURL(myUrl):
           if post.description or post.summary:
             if post.description:
               #obtain only all the paragraphs
+              print(post.description)
               description = re.findall(r'<p>(.*?)</p>',post.description)
               if description:
                 for desc in description:
@@ -49,8 +50,7 @@ def processURL(myUrl):
                 #If the description is in a different format not in between <p> tags
                 soup = BeautifulSoup(post.description)
                 [div.extract() for div in soup.findAll('div')]
-                [img.extract() for img in soup.findAll('img')]
-                print(str(soup)) 
+                [img.extract() for img in soup.findAll('img')] 
                 strBuild += str(soup)       
             else:
               # If there is no entry description and there is a summary 
@@ -63,8 +63,7 @@ def processURL(myUrl):
               #If the summary is in a different format not in between <p> tags
                 soup = BeautifulSoup(post.description)
                 [div.extract() for div in soup.findAll('div')]
-                [img.extract() for img in soup.findAll('img')]
-                print(str(soup)) 
+                [img.extract() for img in soup.findAll('img')] 
                 strBuild += str(soup)        
           else:
              print("There are no entry descriptions or summary")
