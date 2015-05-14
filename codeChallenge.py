@@ -3,7 +3,7 @@
 import sys, feedparser, feedfinder, requests, re
 from textblob import TextBlob
 from textblob.sentiments import NaiveBayesAnalyzer
-#import bs4
+from bs4 import BeautifulSoup
 
 # Cleanse the feed entry description by removing tags : <a>,<i> e.t.c
 def cleanhtml(raw_html):
@@ -31,24 +31,43 @@ def processURL(myUrl):
     try:
       # Parse url
       feeds = feedparser.parse(myUrl)
-      print len(feeds['entries'])
+      print ("Total entries: "+str(len(feeds['entries'])))
       print ("URL of the feed: "+feeds['feed']['link'])
       for post in feeds.entries:
         print("Feed Title: "+post.title+"\n")
         print("Feed URL: "+post.link+"\n")
         try:
-          
-          if post.description:
-            description = re.findall(r'<p>(.*?)</p>',post.description)
-            for desc in description:
-              desc = cleanhtml(desc)
-              strBuild += desc        
+          if post.description or post.summary:
+            if post.description:
+              #obtain only all the paragraphs
+              description = re.findall(r'<p>(.*?)</p>',post.description)
+              if description:
+                for desc in description:
+                  desc = cleanhtml(desc)
+                  strBuild += desc
+              else:
+                #If the description is in a different format not in between <p> tags
+                soup = BeautifulSoup(post.description)
+                [div.extract() for div in soup.findAll('div')]
+                [img.extract() for img in soup.findAll('img')]
+                print(str(soup)) 
+                strBuild += str(soup)       
+            else:
+              # If there is no entry description and there is a summary 
+              postSummary = re.findall(r'<p>(.*?)</p>',post.summary)
+              if postSummary:
+                for summary in postSummary:
+                  summary = cleanhtml(summary)
+                  strBuild += summary
+              else:
+              #If the summary is in a different format not in between <p> tags
+                soup = BeautifulSoup(post.description)
+                [div.extract() for div in soup.findAll('div')]
+                [img.extract() for img in soup.findAll('img')]
+                print(str(soup)) 
+                strBuild += str(soup)        
           else:
-            # If there is no entry description 
-            postSummary = re.findall(r'<p>(.*?)</p>',post.summary)
-            for summary in postSummary:
-              summary = cleanhtml(summary)
-              strBuild += summary
+             print("There are no entry descriptions or summary")
         except Exception, e:
           print (str(e))  
          
@@ -56,7 +75,7 @@ def processURL(myUrl):
       text = TextBlob(strBuild)
       count = 0
       for sentence in text.sentences:
-        if count < 5:    #Process only seven sentences to shorten the processing time
+        if count < 5:    #Process only five sentences to shorten the processing time
           blob = TextBlob(str(sentence), analyzer=NaiveBayesAnalyzer())
           #print(str(sentence))
           if blob.sentiment.classification == 'neg':
@@ -66,7 +85,7 @@ def processURL(myUrl):
             posCount += 1
             posList.append(str(sentence))
           count += 1   
-          print(count) 
+          print("Processing sentence: "+str(count))
       
       print ("Negative Indicators: ")    
       print (negList)
