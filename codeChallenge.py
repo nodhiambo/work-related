@@ -40,7 +40,6 @@ def processURL(myUrl):
           if post.description or post.summary:
             if post.description:
               #obtain only all the paragraphs
-              print(post.description)
               description = re.findall(r'<p>(.*?)</p>',post.description)
               if description:
                 for desc in description:
