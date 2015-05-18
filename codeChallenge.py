@@ -4,6 +4,7 @@ import sys, feedparser, feedfinder, requests, re
 from textblob import TextBlob
 from textblob.sentiments import NaiveBayesAnalyzer
 from bs4 import BeautifulSoup
+from senti_classifier import senti_classifier
 
 # Cleanse the feed entry description by removing tags : <a>,<i> e.t.c
 def cleanhtml(raw_html):
@@ -27,43 +28,35 @@ def processURL(myUrl):
     posCount = 0
     posList = []
     negList = []
+    sentenceArray = []
     strBuild = ""
     try:
       # Parse url
       feeds = feedparser.parse(myUrl)
       print ("Total entries: "+str(len(feeds['entries'])))
-      print ("URL of the feed: "+feeds['feed']['link'])
+      #print ("URL of the feed: "+feeds['feed']['link'])
+      print ("URL of the feed: "+myUrl)
       for post in feeds.entries:
         print("Feed Title: "+post.title+"\n")
         print("Feed URL: "+post.link+"\n")
         try:
           if post.description or post.summary:
             if post.description:
-              #obtain only all the paragraphs
-              description = re.findall(r'<p>(.*?)</p>',post.description)
-              if description:
-                for desc in description:
-                  desc = cleanhtml(desc)
-                  strBuild += desc
-              else:
-                #If the description is in a different format not in between <p> tags
-                soup = BeautifulSoup(post.description)
-                [div.extract() for div in soup.findAll('div')]
-                [img.extract() for img in soup.findAll('img')] 
-                strBuild += str(soup)       
+              #obtain only individual entries
+              soup = BeautifulSoup(post.description)
+              soup = soup.findAll(text=True)
+              cleansed = [a for a in soup if a != '\n']
+              encodedArray =  [x.encode('utf-8') for x in cleansed]
+              for text in cleansed:
+                strBuild += cleanhtml(text)      
             else:
               # If there is no entry description and there is a summary 
-              postSummary = re.findall(r'<p>(.*?)</p>',post.summary)
-              if postSummary:
-                for summary in postSummary:
-                  summary = cleanhtml(summary)
-                  strBuild += summary
-              else:
-              #If the summary is in a different format not in between <p> tags
-                soup = BeautifulSoup(post.description)
-                [div.extract() for div in soup.findAll('div')]
-                [img.extract() for img in soup.findAll('img')] 
-                strBuild += str(soup)        
+              soup = BeautifulSoup(post.summary)
+              soup = soup.findAll(text=True)
+              cleansed = [a for a in soup if a != '\n']
+              encodedArray =  [x.encode('utf-8') for x in cleansed]
+              for text in cleansed:
+                strBuild += cleanhtml(text)          
           else:
              print("There are no entry descriptions or summary")
         except Exception, e:
@@ -71,11 +64,12 @@ def processURL(myUrl):
          
       print("Please wait for the processing to be completed. It may take several minutes...")  
       text = TextBlob(strBuild)
-      count = 0
+      count = 0                 
       for sentence in text.sentences:
         if count < 5:    #Process only five sentences to shorten the processing time
+          sentenceArray.append(str(sentence))
           blob = TextBlob(str(sentence), analyzer=NaiveBayesAnalyzer())
-          #print(str(sentence))
+          print(str(sentence))
           if blob.sentiment.classification == 'neg':
             negCount += 1
             negList.append(str(sentence))
@@ -84,6 +78,10 @@ def processURL(myUrl):
             posList.append(str(sentence))
           count += 1   
           print("Processing sentence: "+str(count))
+      
+      # Another module sentiment indicator to confirm results by comparison 
+      # pos_score, neg_score = senti_classifier.polarity_scores(sentenceArray)
+      # print (pos_score, neg_score)
       
       print ("Negative Indicators: ")    
       print (negList)
