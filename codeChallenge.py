@@ -43,20 +43,30 @@ def processURL(myUrl):
           if post.description or post.summary:
             if post.description:
               #obtain only individual entries
-              soup = BeautifulSoup(post.description)
-              soup = soup.findAll(text=True)
-              cleansed = [a for a in soup if a != '\n']
-              encodedArray =  [x.encode('utf-8') for x in cleansed]
-              for text in cleansed:
-                strBuild += cleanhtml(text)      
+              try:
+                soup = BeautifulSoup(post.description)
+                soup = soup.findAll(text=True)
+                # Remove all the endlines from the sentences
+                cleansed = [a for a in soup if a != '\n']
+                # Remove preceding u' from all the sentences aka encoding
+                encodedArray =  [x.encode('utf-8') for x in cleansed]
+                for text in cleansed:
+                  strBuild += cleanhtml(text) 
+              except Exception, e:
+                print (str(e))      
             else:
               # If there is no entry description and there is a summary 
-              soup = BeautifulSoup(post.summary)
-              soup = soup.findAll(text=True)
-              cleansed = [a for a in soup if a != '\n']
-              encodedArray =  [x.encode('utf-8') for x in cleansed]
-              for text in cleansed:
-                strBuild += cleanhtml(text)          
+              try:
+                soup = BeautifulSoup(post.summary)
+                soup = soup.findAll(text=True)
+                # Remove all the endlines from the sentences
+                cleansed = [a for a in soup if a != '\n']
+                # Remove preceding u' from all the sentences aka encoding
+                encodedArray =  [x.encode('utf-8') for x in cleansed]
+                for text in cleansed:
+                  strBuild += cleanhtml(text) 
+              except Exception, e:
+                print (str(e))        
           else:
              print("There are no entry descriptions or summary")
         except Exception, e:
@@ -67,9 +77,8 @@ def processURL(myUrl):
       count = 0                 
       for sentence in text.sentences:
         if count < 5:    #Process only five sentences to shorten the processing time
-          sentenceArray.append(str(sentence))
+          #sentenceArray.append(str(sentence))
           blob = TextBlob(str(sentence), analyzer=NaiveBayesAnalyzer())
-          print(str(sentence))
           if blob.sentiment.classification == 'neg':
             negCount += 1
             negList.append(str(sentence))
