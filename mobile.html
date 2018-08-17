@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Acorn TV | Watch the Best British TV | Start Your Free Trial</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+
+<!-- Fav and touch icons -->
+<link rel="shortcut icon" href="https://signup.acorn.tv/img/favicon.ico">
+
+<link rel="stylesheet" href="http://localhost:8080/api/signup/web/css/main.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style>
+body {
+    font-family: 'Source Sans Pro', 'Regular';
+}
+.header-container {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 352px;
+    height: 70px;
+    /*z-index: 94;*/
+    background-color: #0C0C0C;
+    margin-left: auto;
+    margin-right: auto;
+}
+.collage-heading {
+    padding-top: 1%;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 16px;
+}
+.home-show-details {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 352px;
+    color: #FFFFFF;
+    background-color: #000000;
+}
+.show-details-one {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10%;
+}
+.show-details-two {
+    padding-top: 5%;
+}
+.detail-heading {
+   text-align: center;
+   padding-top: 5%;
+   padding-bottom: 2%;
+   font-size: 26px;
+}
+.show-heading {
+   padding-left: 10%;
+   font-size: 16px;
+}
+.show-heading {
+   padding-left: 10%;
+   font-size: 20px;
+   font-weight: bolder;
+}
+.detail-info {
+   font-size: 16px;
+   /*padding-top: 1%;*/
+   padding-left: 10%;
+   padding-right: 10%;
+   text-align: justify;
+   color:#E0E0E0;
+   letter-spacing: -1px;
+}
+.show-info {
+   letter-spacing: -1px;
+   font-size: 16px;
+   padding-right: 10%;
+   padding-left: 10%;
+   padding-bottom: 8%;
+   text-align: justify;
+   color:#E0E0E0;
+}
+.show-video {
+   padding-bottom: 7%;
+   padding-left: 10%;
+}
+.btn-stream {
+   line-height: 37px;
+   background: #8B241D;
+   color: #FFFFFF;
+   margin-top: 15%;
+   margin-left: 18%;
+   width: 230px;
+   border: none;
+   border-radius: 0px;
+   text-decoration: none;
+   font-size: 17px;
+}
+.log-in {
+    color: #FFFFFF;
+    size: 20px;
+    text-align: left;
+    height: 25px;
+    margin-right: 20px !important;
+/*    margin-top: 35px !important; */
+    width: 62px;
+}
+.atv-logo {
+    width: 100px;
+    margin-top: 1px;
+}
+.btn-default {
+    position: absolute;
+    line-height: 30px;
+    background: #8B241D;
+    color: #FFFFFF;
+    margin-top: 20px;
+    margin-left: 20%;
+    width: 225px;
+    border: none;
+    border-radius: 0px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.home-hero-carousel {
+    margin-top: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 352px;
+    position: relative;
+    width: 352px;
+    height: 352px;
+    padding: 40px 0 0 0;
+    background: linear-gradient(
+    rgba(0,0,0,.6),
+    rgba(0,0,0,.6)),
+    url('assets/img/Header_Show-Collage.jpg');
+}
+.waystowatch-device-heading {
+   text-align: center;
+   padding-top:3%;
+   margin-bottom: 0;
+   font-size: 26px;
+   line-height: 1.3;
+}
+.waystowatch-heading-stream {
+   text-align: center;
+   padding-top:3%;
+   color:#FFFFFF;
+   padding-top:8%;
+   font-size: 26px;
+   line-height: 1.3;
+}
+.waystowatch-container {
+   width: 90%;
+   margin-left: 5%;
+   padding-top: 5%;
+   float: left;
+   background: #000000;
+}
+.waystowatch-text {
+   font-size:16px;
+   text-align:justify;
+   color:#E0E0E0;
+   letter-spacing: -1px;
+   margin-bottom: 7%;
+}
+.watch-heading {
+   font-size:20px;
+   overflow: hidden;
+   white-space: nowrap;
+   letter-spacing: -1px;
+   text-align: center;
+   margin-bottom: 2%;
+}
+.waystowatch-img {
+   float: left;
+ /*  width: 33%;*/
+   padding-top: 1%;
+   padding-right: 3%;
+   padding-left: 3%;
+}
+.ways-to-watch {
+   padding-top: 5%;
+   padding-bottom: 5%;
+   display: block;
+   padding-right: 3%;
+   padding-left: 3%;
+   width: 33%;
+}
+.video-box {
+   display: inline-flex;
+   width: auto;
+   margin-left: 9%;
+}
+.video-box a {
+   vertical-align: top;
+   display: inline-block;
+   *display: inline;
+   zoom: 1;
+}
+.video-box-img {
+   padding-right:5%;
+   padding-bottom:5%;
+   width: 150px;
+}
+.home-show-genres {
+    padding-top:4%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 352px;
+    color: #FFFFFF;
+    background: #000000;
+}
+.show-genres {
+   padding-left: 1%;
+   display: inline;
+   padding-right: 1%;
+}
+.home-show-pricing {
+    padding-top:3%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 352px;
+    color: #FFFFFF;
+    background: #000000;
+}
+.pricing-heading {
+   cursor: pointer;
+   color: #FFFFFF;
+   padding-left:20%;
+   margin-bottom:0px !important;
+   font-size: 20px;
+}
+.pricing-header-container {
+   display:flex;
+   padding-bottom:1%;
+}
+.pricing-container {
+   /*display:flex;*/
+   height: 70%;
+}
+.pricing-box-heading {
+  font-size:24px;
+  line-height:28px;
+  font-weight:bold;
+  text-align:center;
+  margin-top: 45px;
+}
+.pricing-box-text {
+  font-size:14px;
+  text-align:center;
+  color:#E0E0E0;
+  letter-spacing: 0px;
+}
+.monthly-pricing-box {
+    background-color: #2C2C2C;
+    width: 300px;
+    border: 5px solid #8B241D;
+    padding: 25px;
+    margin-top: 25px;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-bottom: 50px;
+}
+.annual-pricing-box {
+    background-color: #2C2C2C;
+    width: 300px;
+    border: 5px solid #8B241D;
+    padding: 25px;
+    margin: 25px;
+}
+#waytowatchHeading {
+    padding-left:7%;
+    color:#A6A6A6;
+    cursor: pointer;
+    font-size: 20px;
+}
+.waystowatch-heading {
+   text-align: center;
+   font-size: 26px;
+   line-height: 1.3;
+   margin-top: 10%;
+}
+.line {
+   width: 100%;
+   border-bottom: 2px solid #8B241D;
+   position: absolute;
+}
+.pricing-line {
+   width: 121%;
+   border-bottom: 30px solid #8B241D;
+   position: relative;
+   margin-top: -25px;
+   margin-left: -25px;
+   font-size: 16px;
+}
+.critical-acclaim-text {
+   text-align:justify;
+   width:85%;
+   padding-left:7%;
+   color:#E0E0E0;
+   font-size: 14px;
+   font-style:italic;
+   letter-spacing: -1px;
+}
+.critical-acclaim-img {
+   padding-left:5%;
+   padding-bottom:5%;
+}
+.critical-img-container {
+   width: 352px;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 10%;
+}
+.critical-line-images {
+   display:inline-flex;
+   padding-top:2%;
+   padding-bottom:4%;
+   padding-left:13%;
+   width: 352px;
+}
+.critical-img-container a {
+   padding-right: 10%;
+}
+.footer-container {
+    position: relative;
+    top: 25px;
+    left: 0px;
+    width: 352px;
+    height: 90px;
+    background-color: #0C0C0C;
+    margin-left: auto;
+    margin-right: auto;
+    color: #E0E0E0;
+}
+.footer-text {
+   font-size: 12px !important;
+   padding-top:30%;
+   width: 352px;
+   padding-left:30%;
+   float: right;
+}
+.footer-text-right {
+   font-size: 12px !important;
+   padding-top:8%;
+   text-transform:lowercase;
+   text-transform:capitalize;
+   font-weight:normal;
+   color:#E0E0E0;
+}
+.footer-text-right {
+   font-size: 12px !important;
+   padding-top:8%;
+   text-transform:lowercase;
+   text-transform:capitalize;
+   font-weight:normal;
+   color:#E0E0E0;
+}
+.app-stores-container {
+   margin-left: 9%;
+}
+.download-app-text {
+   font-size:16px;
+   text-align:justify;
+   color:#E0E0E0;
+   letter-spacing: -1px;
+   padding-right: 10%;
+   padding-left: 10%;
+   padding-bottom: 4%
+}
+</style>
+</head>
+<script>
+function showWaysToWatch(){
+    $("#waystowatch").show();
+    $("#appStore").show();
+    $("#pricing").hide();
+    $("#waytowatchHeading").css("color", "#FFFFFF");
+    $("#pricingHeading").css("color", "#A6A6A6");
+    $(".highlight-line").css("margin-left", "52%");
+}
+
+function showPricing(){
+    $("#pricing").show();
+    $("#pricingHeading").css("color", "#FFFFFF");
+    $("#waytowatchHeading").css("color", "#A6A6A6");
+    $("#waystowatch").hide();
+    $("#appStore").hide();
+    $(".highlight-line").css("margin-left", "26%");
+}
+</script>
+<body>
+<div id="main">
+    <div id="header">
+        <!--Navbar -->
+        <div class="navbar navbar-fixed-top header-container" role="navigation" >
+            <ul class="navbar-right-ul">
+                <li class="navbar-right"><a class="log-in" href="signin.html">LOG IN</a></li>
+            </ul>
+            <div class="navbar-header" style="margin-left:4%;margin-top:-12%">
+                <a href="https://dev2.acorn.tv"><img src="https://api.rlje.net/acorn/artwork/size/atvlogo?t=Icons&amp;w=300" class="atv-logo"></a>
+            </div>
+            <!--div>
+                <a href="createaccount.html">
+                    <button type="button" class="btn btn-default" style="line-height:37px">START YOUR FREE TRIAL</button>
+                </a>
+            </div-->
+        </div>
+    </div>
+    <div class="home-hero-carousel">
+        <h1 class="waystowatch-heading-stream">STREAM WORLD-CLASS TV</br> FROM BRITAIN AND BEYOND</h1>
+        <div class="collage-heading">Just $4.99 a month. Cancel anytime.</div>
+        <a href="createaccount.html">
+            <button type="button" class="btn btn-default" style="margin-left:18%;margin-top:7%;line-height:37px">START YOUR FREE TRIAL</button>
+        </a>
+    </div>
+    <div class="home-show-details">
+        <div class="show-details-one">
+            <div class="detail-heading">ALWAYS AVAILABLE. <br>ALWAYS COMMERCIAL-FREE.</div>
+            <div class="detail-info">Acorn TV offers instant access to a world-class library of dramas, mysteries, comedies and documentaries. Binge-watch hard-to-find gems, timeless classics and newly-discovered favorites from Britain, Ireland, Australia and beyond. With new series and episodes added weekly, including Acorn TV Originals, there's always something to watch!</div>
+            <button type="button" class="btn btn-stream">STREAM FREE FOR 1 WEEK</button>
+        </div>
+        <div class="show-details-two">
+            <div class="show-video">
+                <img src="assets/img/Video-Thumbnail-Desktop-DocMartin.jpg" width="90%">
+            </div>
+            <span class="show-heading">Doc Martin</span>
+            <div class="show-info">Series 7, Series 8 and the Doc Martin prequel movies are exclusive to Acorn TV. Martin Clunes stars as surly and self-centered Dr. Martin Ellingham in this beloved British</br><b>Read More...</b></div>
+
+            <div class="video-box">
+               <a href="#"><img class="video-box-img" src="assets/img/Video-Thumbnail-Desktop-DocMartin.jpg" width="70px"></a>
+               <a href="#"><img class="video-box-img" src="assets/img/Video-Thumbnail-Desktop-AgathaRaisin.jpg" width="70px"></a>
+            </div>
+            <div class="video-box">
+               <a href="#"><img class="video-box-img" src="assets/img/Video-Thumbnail-Desktop-APTCH.jpg" width="70px"></a>
+               <a href="#"><img class="video-box-img" src="assets/img/Video-Thumbnail-Desktop-GKH.jpg" width="70px"></a>
+            </div>
+            <div class="video-box">
+               <a href="#"><img class="video-box-img" src="assets/img/Video-Thumbnail-Desktop-LochNess.jpg" width="70px"></a>
+               <a href="#"><img class="video-box-img" src="assets/img/Video-Thumbnail-Desktop-KeepingFaith.jpg" width="70px"></a>
+            </div>
+        </div>
+    </div>
+    <div class="home-show-genres">
+        <div class="show-genres">
+            <img src="assets/img/Spread-Mobile-Panel_1.jpg" height="67%" width="31%">
+        </div>
+        <div class="show-genres">
+            <img src="assets/img/Spread-Mobile-Panel_2.jpg" height="67%" width="31%">
+        </div>
+        <div class="show-genres">
+            <img src="assets/img/Spread-Mobile-Panel_3.jpg" height="67%" width="31%">
+        </div>
+        <!--div class="show-genres">
+            <img src="assets/img/Genre-Rotator-Desktop-OnlyOnAcorn.jpg" height="67%">
+        </div-->
+   </div>
+   <div class="home-show-pricing">
+      <div class="pricing-header-container">
+        <h3 class="pricing-heading" id="pricingHeading" onclick="showPricing()">PRICING</h3>
+        <h3 id="waytowatchHeading" onclick="showWaysToWatch()">WAYS TO WATCH</h3>
+      </div>
+      <div class="highlight-line"></div>
+      <div class="line"></div>
+
+     <div id="pricing">
+          <h1 class="waystowatch-heading">GREAT SHOWS.</br> GREAT VALUE. </h1>
+          <div class="pricing-container">
+              <div class="monthly-pricing-box">
+                  <div class="pricing-box-heading">MONTHLY</div></br>
+                  <div class="pricing-box-text"><span style="font-size:170%">$4.99</span> per month after free trial</br></br><span style="font-size:14px">A low, monthly price for a world-class TV. No commitment, cancel anytime</span></div>
+                  <button type="button" class="btn btn-default" style="margin-left:4%;position:relative;margin-top:20%">SELECT MONTHLY</button>
+              </div>
+              <div class="annual-pricing-box">
+                  <div class="pricing-line"><span style="background:#8B241D;position: absolute;margin-left: 35%;">BEST VALUE</span></div>
+                  <div class="pricing-box-heading">ANNUAL</div></br>
+                  <div class="pricing-box-text"><span style="font-size:170%">$49.99</span> per 12 months after free trial</br></br><span style="font-size:14px">12 months for the price of 10</br>One payment for the whole year</br>No commitment, cancel anytime</span></div>
+                  <button type="button" class="btn btn-default" style="margin-left:4%;position:relative;margin-top:10%">SELECT ANNUAL</button>
+              </div>
+          </div>
+      </div>
+       <div style="display:none" id="waystowatch">
+          <h1 class="waystowatch-device-heading">ONE ACCOUNT.</br> ALL DEVICES. </h1>
+          <div class="waystowatch-container">
+              <div class="waystowatch-img">
+                  <img src="assets/img/Device-Mockup-TV-A.png" width="100%" style="margin-bottom: 5%;">
+                  <div class="watch-heading">Watch on your TV</div>
+                  <div class="waystowatch-text">Activate the Acorn TV on your Roku, Apple TV and fire TV to stream to your TV. Chromecast compatible</div>
+              </div>
+              <div class="waystowatch-img">
+                  <img src="assets/img/Device-Mockup-Mobile-A.png" width="100%">
+                  <div class="watch-heading">Watch On-the-Go</div>
+                  <div class="waystowatch-text">Download the Acorn TV app on your mobile or tablet device.</div>
+              </div>
+              <div class="waystowatch-img">
+                  <img src="assets/img/Device-Mockup-Computer-A.png" width="100%">
+                  <div class="watch-heading">Watch on your Computer</div>
+                  <div class="waystowatch-text">Stream your favorite shows through the web by visiting www.acorn.tv</div>
+              </div>
+          </div>
+          <div style="text-align: center;font-size:18px;padding-bottom:3%;">DOWNLOAD THE ACORN TV APP</div>
+          <div class="download-app-text">Visit the app store on your mobile devices to download the Acorn TV app.</div> 
+          <div class="app-stores-container" id="appStore">
+             <img src="assets/img/app-store.svg" width="45%" style="padding-right:2%;padding-top:5%">
+             <img src="assets/img/google-play.svg" width="45%" style="padding-left:2%;padding-top:5%">
+          </div>
+    </div>
+    <div class="home-critical-acclaim">
+      <h1 class="waystowatch-heading">CRITICAL ACCLAIM</h1>
+      <div class="critical-acclaim-container">
+          <div class="critical-acclaim-img">
+               <img src="assets/img/nyt-white.png" width="70px" height="1%" style="margin-left: 35%;margin-top: 3%;margin-bottom: 3%;">
+              <div class="critical-acclaim-text">"Acorn TV has the most robust, reliable selection of European, British, Canadian and Australian shows, with a heavy emphasis on Scandinavian noir, British procedurals and the kinds of quirky deep cuts that don’t make it to PBS or Netflix." </div>
+          </div></br>
+          <div class="critical-acclaim-img">
+               <img src="assets/img/THR_white.png" width="70px" height="25px" style="margin-left: 35%;margin-top: 3%;margin-bottom: 3%;">
+              <div class="critical-acclaim-text">"Glorious streaming service… an essential must-have… (with) well-written, beautifully acted and surprisingly compelling scripted television."</div>
+          </div>
+      </div>
+       <div class="critical-img-container">
+          <div class="critical-line-images">
+               <a href="#"><img src="assets/img/npr-white.png" width="60px" height="25px"></a>
+              <a href="#"><img src="assets/img/huffpost-logo.png" width="75px" height="35px" style="padding-left:7%"></a>
+              <a href="#"><img src="assets/img/Time_Magazine.png" width="60px" height="25px" style="padding-left:7%"></a>
+          </div></br>
+          <div class="critical-line-images">
+              <a href="#"><img src="assets/img/wallstreetjournal-logo-white.png" width="60px" height="25px"></a>
+             <a href="#"><img src="assets/img/la-times.png" width="75px" height="25px" style="padding-left:7%"></a>
+              <a href="#"><img src="assets/img/tv-guide.png" width="60px" height="35px" style="padding-left:7%"></a>
+          </div></br></br>
+      </div>
+    </div>
+    <div class="footer-container">
+                <div class="col-md-6 col-sm-6 column hidden-xs">
+                        <ul style="display: flex;width:352px;padding-top:5%">
+                                <li style="padding-left:30px">
+                                        <a class="open-dialog fancybox.iframe footer-text-right" href="https://api.rlje.net/acorntv-help/faq.html">FAQs</a>
+                                </li>
+                                <li style="padding-left:30px">
+                                        <a class="open-dialog fancybox.iframe footer-text-right" href="https://api.rlje.net/acorntv-help/acorntv-privacy-policy.html">Privacy Policy</a>
+                                </li>
+                                <li style="padding-left:30px">
+                                        <a class="open-dialog fancybox.iframe footer-text-right" href="https://api.rlje.net/acorntv-help/closed-captioning-policy.html">Captioning Policy</a>
+                                </li>
+                        </ul>
+                </div>
+                <div class="col-md-6 col-sm-6 column">
+                        <p class="footer-text">&copy; <script type="text/javascript">var now=new Date();document.write (now.getFullYear());</script> RLJ Entertainment, Inc. All Rights Reserved</p>
+                </div>
+   </div>
+
+
+</div> <!-- End Main -->
+</body>
+</html
