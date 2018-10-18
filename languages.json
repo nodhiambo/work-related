@@ -1,0 +1,20 @@
+[
+    {
+        "languages": {
+            "en": "English",
+            "es": "Espa\\u00f1ol",
+            "fr": "French"
+        },
+        "tr": {
+            "SIGN-IN": {
+                "type": "text",
+                "content": {
+                    "en": "Sign in",
+                    "es": "Registrarse",
+                    "fr": "Se connecter"
+                }
+            }
+        }
+    }
+]
+
